@@ -29,8 +29,7 @@ class People(Base):
     url = Column(String(250), nullable=False)
     created = Column(String(250), nullable=False)
     edited = Column(String(250), nullable=False)
-    planet_id = Column(Integer, ForeignKey('planets.id'))
-    people = relationship(Planets)
+    
 
 
 
@@ -39,22 +38,21 @@ class Planets(Base):
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-      diameter = Column(String(250), nullable=False)
-      rotation_period = Column(String(250), nullable=False)
-      orbital_period = Column(String(250), nullable=False)
-      gravity = Column(String(250), nullable=False)
-      population = Column(String(250), nullable=False)
-      climate = Column(String(250), nullable=False)
-      terrain = Column(String(250), nullable=False)
-      surface_water = Column(String(250), nullable=False)
-      created = Column(String(250), nullable=False)
-      edited = Column(String(250), nullable=False)
-      name = Column(String(250), nullable=False)
-      url = Column(String(250), nullable=False)
+    diameter = Column(Integer, nullable=False)
+    rotation_period = Column(String(250), nullable=False)
+    orbital_period = Column(String(250), nullable=False)
+    gravity = Column(String(250), nullable=False)
+    population = Column(String(250), nullable=False)
+    climate = Column(String(250), nullable=False)
+    terrain = Column(String(250), nullable=False)
+    surface_water = Column(String(250), nullable=False)
+    created = Column(String(250), nullable=False)
+    edited = Column(String(250), nullable=False)
+    name = Column(String(250), nullable=False)
+    url = Column(String(250), nullable=False)
       
-
-      class Users(Base):
-    __tablename__ = 'users'
+class User(Base):
+    __tablename__ = 'user'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
@@ -63,16 +61,17 @@ class Planets(Base):
     mail = Column(String(250), nullable=False)
     password = Column(String(250), nullable=False)
 
-    class Favorites(Base):
+class Favorites(Base):
     __tablename__ = 'favorites'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
-    user_id = Column(Integer, ForeignKey('users.id')
-    planets_id = Column(Integer, ForeignKey('planets.id')
-    people_id = Column(Integer, ForeignKey('people.id')
-    favorites = relationship(Users)
-    favorites = relationship(Planets)
-    favorites = relationship(People)
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    planets_id = Column(Integer, ForeignKey('planets.id'))
+    people_id = Column(Integer, ForeignKey('people.id'))
+    user = relationship(User)
+    planets = relationship(Planets)
+    people = relationship(People)
     
     
 
